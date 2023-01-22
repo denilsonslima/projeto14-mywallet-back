@@ -8,7 +8,7 @@ export async function createMoviment(req, res){
         if(!valor) return res.status(422).send("Formato inválido")
         const user =  res.locals.sessao
         const date = dayjs().format("DD/MM")
-        await db.collection("movement").insertOne({idUser: user.idUser, value: parseFloat(valor.toFixed(2)), description, type, date: date})
+        await db.collection("movement").insertOne({idUser: user.idUser, value: Number(valor.toFixed(2)), description, type, date: date})
         res.sendStatus(201)
     } catch (error) {
         console.log(error)

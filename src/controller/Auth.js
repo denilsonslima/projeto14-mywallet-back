@@ -15,7 +15,7 @@ export async function login(req, res){
             } else {
                 await db.collection("sessoes").insertOne({idUser: existe._id, token})
             } 
-            res.send(token)
+            res.send({token: token, name: existe.name})
         } else {
             res.status(400).send("Usuário ou senha incorretos!")
         }
@@ -26,6 +26,7 @@ export async function login(req, res){
 }
 
 export async function singUp(req, res){
+    const {email, password, name} = req.body
     try {
         const existe = await db.collection("users").findOne({ email })
         if (existe) return res.status(400).send("E-mail já cadastrado!!")
