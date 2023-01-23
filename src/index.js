@@ -9,5 +9,4 @@ app.use(cors())
 
 app.use([authRouter, movimentRouter])
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Servidor rodando na porta: ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`Servidor rodando na porta: ${process.env.PORT}`));
